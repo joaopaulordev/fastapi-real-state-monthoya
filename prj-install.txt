@@ -1,0 +1,42 @@
+---------------------Ambiente virtual-------------------------------------------
+pip install virtualenv
+python -m venv venv
+.\venv\Scripts\activate
+
+Crt + Shift + p
+
+pip install pylint
+pylint --generate-rcfile > .pylintrc
+
+pip install fastapi
+pip install uvicorn
+
+pip install SQLAlchemy
+pip install aiosqlite
+pip install SQLAlchemy-Utils
+
+pip install pytest
+pip install pytest-asyncio
+pytest -s -v src\
+
+
+pip install alembic
+alembic init alembic
+alembic revision --autogenerate -m "Create table imoveis"
+alembic upgrade head
+
+--------------------------------------------------------
+git init
+git log
+git status
+git add .
+git commit -m "Created full CRUD with basic fields"
+git branch -M main
+git remote add origin https://github.com/joaopaulordev/fastapi-real-state-monthoya.git
+git push -u origin main
+git push -f origin main
+git pull origin main
+---------
+git remote -v
+git remote rm origin
+git fetch origin main

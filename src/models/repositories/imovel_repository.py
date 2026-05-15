@@ -48,16 +48,37 @@ class ImovelRepository(ImovelRepositoryInterface):
         return imovel
 
 
-    async def atualizar_imovel(self, imovel_info: dict) -> None:
+    async def atualizar_imovel(self, imovel_info: dict) -> Imovel:
         try:
             imovel = self.__db_session.query(Imovel).filter(Imovel.id == imovel_info.get("id")).first()
             if not imovel:
                 raise HttpNotFoundError("Imóvel não encontrado.")
-            
+
             imovel.descricao = imovel_info.get("descricao")
+            imovel.ativo = imovel_info.get("ativo")
+            imovel.lancamento = imovel_info.get("lancamento")
+            imovel.destaque = imovel_info.get("destaque")
             imovel.valor = imovel_info.get("valor")
-            
+            imovel.visualizacoes = imovel_info.get("visualizacoes")
+            imovel.finalidade = imovel_info.get("finalidade")
+            imovel.tipo_imovel = imovel_info.get("tipo_imovel")
+            imovel.pretensao = imovel_info.get("pretensao")
+            imovel.estado = imovel_info.get("estado")
+            imovel.cidade = imovel_info.get("cidade")
+            imovel.endereco = imovel_info.get("endereco")
+            imovel.complemento = imovel_info.get("complemento")
+            imovel.sobre_imovel = imovel_info.get("sobre_imovel")
+            imovel.area_total = imovel_info.get("area_total")
+            imovel.area_construida = imovel_info.get("area_construida")
+            imovel.dormitorios = imovel_info.get("dormitorios")
+            imovel.banheiros = imovel_info.get("banheiros")
+            imovel.suites = imovel_info.get("suites")
+            imovel.vagas_garagem = imovel_info.get("vagas_garagem")
+            imovel.vagas_garagem_cobertas = imovel_info.get("vagas_garagem_cobertas")
+            imovel.vagas_garagem_descobertas = imovel_info.get("vagas_garagem_descobertas")
+
             self.__db_session.commit()
+            return await self.visualizar_imoveis(imovel.id)
         except Exception as exception:
             self.__db_session.rollback()
             raise exception

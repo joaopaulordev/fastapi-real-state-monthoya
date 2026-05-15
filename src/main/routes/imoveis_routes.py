@@ -51,7 +51,7 @@ async def visualizar_imovel(imovel_id: int, db: Session = Depends(get_session_db
     )        
 
 
-@imoveis_routes.post("/imoveis/atualizar/{imovel_id}")
+@imoveis_routes.put("/imoveis/atualizar/{imovel_id}")
 async def atualizar_imovel(imovel_id: int, body: ImovelSchema, db: Session = Depends(get_session_db)):
     http_request = HttpRequest(body=dict(body), param={"imovel_id": imovel_id})
     imovel_atualizar = imovel_atualizar_composer(db)

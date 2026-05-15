@@ -14,7 +14,7 @@ class ImovelRepositoryInterface(ABC):
     async def visualizar_imoveis(self, imovel_id: int) -> Imovel: pass
 
     @abstractmethod
-    async def atualizar_imovel(self, imovel_info: dict) -> None: pass
+    async def atualizar_imovel(self, imovel_info: dict) -> Imovel: pass
 
     @abstractmethod    
     async def deletar_imovel(self, imovel_id: int) -> None: pass 

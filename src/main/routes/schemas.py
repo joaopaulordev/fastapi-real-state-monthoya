@@ -60,3 +60,9 @@ class InteressadoSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+class CaracteristicasSchema(BaseModel):
+    caracteristicas_id: Optional[List[int]]
+
+    class Config:
+        from_attributes = True

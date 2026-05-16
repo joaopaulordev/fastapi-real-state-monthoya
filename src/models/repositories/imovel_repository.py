@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy.orm import Session
 from src.models.interfaces.imovel_repository import ImovelRepositoryInterface
-from src.models.entities.imovel import Imovel
+from src.models.entities.imovel import Caracteristica, Imovel
 from src.errors.types.http_not_found_error import HttpNotFoundError
 from src.errors.types.http_bad_request_error import HttpBadRequestError
 
@@ -9,6 +9,60 @@ from src.errors.types.http_bad_request_error import HttpBadRequestError
 class ImovelRepository(ImovelRepositoryInterface):
     def __init__(self, db: Session) -> None:
         self.__db_session = db
+
+
+    async def inserir_caracteristicas_imovel(self, imovel_info: dict) -> Imovel:
+        try:
+            imovel = self.__db_session.query(Imovel).filter(Imovel.id == imovel_info.get("imovel_id")).first()
+            if not imovel:
+                raise HttpNotFoundError("Imóvel não encontrado.")
+
+            list_caracteristicas_id = imovel_info.get("caracteristicas_id", [])
+            for caracteristica_id in list_caracteristicas_id:
+                caracteristica = self.__db_session.query(Caracteristica).filter(Caracteristica.id == caracteristica_id).first()
+                imovel.caracteristicas.append(caracteristica)
+
+            self.__db_session.commit()
+            return imovel
+        except Exception as exception:
+            self.__db_session.rollback()
+            raise exception
+        
+        
+    async def atualizar_caracteristicas_imovel(self, imovel_info: dict) -> Imovel:
+        try:
+            imovel = self.__db_session.query(Imovel).filter(Imovel.id == imovel_info.get("imovel_id")).first()
+            if not imovel:
+                raise HttpNotFoundError("Imóvel não encontrado.")
+
+            list_caracteristicas_id = imovel_info.get("caracteristicas_id", [])
+            caracteristicas = self.__db_session.query(Caracteristica).filter(Caracteristica.id.in_(list_caracteristicas_id)).all()
+            imovel.caracteristicas = caracteristicas
+
+            self.__db_session.commit()
+            return imovel
+        except Exception as exception:
+            self.__db_session.rollback()
+            raise exception
+        
+
+        
+    async def deletar_caracteristicas_imovel(self, imovel_info: dict) -> None:
+        try:
+            imovel = self.__db_session.query(Imovel).filter(Imovel.id == imovel_info.get("imovel_id")).first()
+            if not imovel:
+                raise HttpNotFoundError("Imóvel não encontrado.")
+            
+            list_caracteristicas_id = imovel_info.get("caracteristicas_id", [])
+            for caracteristica_id in list_caracteristicas_id:
+                caracteristica = self.__db_session.query(Caracteristica).filter(Caracteristica.id == caracteristica_id).first()
+                imovel.caracteristicas.remove(caracteristica)
+                        
+            self.__db_session.commit()
+        except Exception as exception:
+            self.__db_session.rollback()
+            raise exception
+        
 
 
     async def listar_imoveis(self, valor_inicial: float, valor_final: float, pretensao: int, finalidade: int, tipo_imovel: int, lancamento: bool, destaque: bool, ativo: bool) -> List[Imovel]:

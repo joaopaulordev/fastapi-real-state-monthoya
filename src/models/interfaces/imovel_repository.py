@@ -5,6 +5,15 @@ from src.models.entities.imovel import Imovel
 class ImovelRepositoryInterface(ABC):
 
     @abstractmethod
+    async def inserir_caracteristicas_imovel(self, imovel_info: dict) -> Imovel: pass
+
+    @abstractmethod
+    async def deletar_caracteristicas_imovel(self, imovel_info: dict) -> None: pass
+
+    @abstractmethod
+    async def atualizar_caracteristicas_imovel(self, imovel_info: dict) -> Imovel: pass
+
+    @abstractmethod
     async def listar_imoveis(self, valor_inicial: float, valor_final: float, pretensao: int, finalidade: int, tipo_imovel: int, lancamento: bool, destaque: bool, ativo: bool) -> List[Imovel]: pass
 
     @abstractmethod

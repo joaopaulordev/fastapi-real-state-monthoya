@@ -24,19 +24,19 @@ class ImovelInserirController(ImovelInserirControllerInterface):
             raise HttpBadRequestError("Valor do imóvel deve ser positivo.")
         
         finalidade = imovel_data["finalidade"]
-        if not finalidade:
+        if finalidade == 0:
             raise HttpBadRequestError("Finalidade do imóvel é obrigatória.")
         
         tipo_imovel = imovel_data["tipo_imovel"]
-        if not tipo_imovel:
+        if tipo_imovel == 0:
             raise HttpBadRequestError("Tipo do imóvel é obrigatório.")
         
         pretensao = imovel_data["pretensao"]
-        if not pretensao:
+        if pretensao == 0:
             raise HttpBadRequestError("Pretensão do imóvel é obrigatória.") 
         
         estado = imovel_data["estado"]
-        if not estado:
+        if estado == 0:
             raise HttpBadRequestError("Estado do imóvel é obrigatório.")
         
         cidade = imovel_data["cidade"]

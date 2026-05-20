@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
-from src.main.routes.schemas import CaracteristicasSchema, ImovelSchema, BuscaImovelSchema
+from src.main.routes.schemas import CaracteristicasSchema, ImovelSchema, ListarImovelSchema
 from src.models.settings.dependencies import get_session_db
 from src.main.composer.imovel_listar_composer import imovel_listar_composer
 from src.main.composer.imovel_inserir_composer import imovel_inserir_composer
@@ -71,7 +71,7 @@ async def criar_imovel(body: ImovelSchema, db: Session = Depends(get_session_db)
 
 
 @imoveis_routes.post("/imoveis/listar")
-async def listar_imoveis(body: BuscaImovelSchema, db: Session = Depends(get_session_db)):    
+async def listar_imoveis(body: ListarImovelSchema, db: Session = Depends(get_session_db)):    
     http_request = HttpRequest(body=dict(body))
     view = imovel_listar_composer(db)
 

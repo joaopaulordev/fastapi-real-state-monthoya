@@ -7,13 +7,13 @@ class ImovelListarController(ImovelListarControllerInterface):
     def __init__(self, imovel_repository: ImovelRepositoryInterface) -> None:
         self.__imovel_repository = imovel_repository
 
-    async def listar(self, valor_inicial: float, valor_final: float, pretensao: int, finalidade: int, tipo_imovel: int, lancamento: bool, destaque: bool, ativo: bool) -> Dict:
-        imoveis = await self.__busca_imoveis_db(valor_inicial, valor_final, pretensao, finalidade, tipo_imovel, lancamento, destaque, ativo)
+    async def listar(self, imovel_data: dict) -> Dict:
+        imoveis = await self.__busca_imoveis_db(imovel_data)
         response = self.__format_response(imoveis)
         return response
 
-    async def __busca_imoveis_db(self, valor_inicial: float, valor_final: float, pretensao: int, finalidade: int, tipo_imovel: int, lancamento: bool, destaque: bool, ativo: bool) -> List[Imovel]:
-        imoveis = await self.__imovel_repository.listar_imoveis(valor_inicial, valor_final, pretensao, finalidade, tipo_imovel, lancamento, destaque, ativo)
+    async def __busca_imoveis_db(self, imovel_info: dict) -> List[Imovel]:
+        imoveis = await self.__imovel_repository.listar_imoveis(imovel_info)
         return imoveis
 
     def __format_response(self, imoveis: List[Imovel]) -> Dict:

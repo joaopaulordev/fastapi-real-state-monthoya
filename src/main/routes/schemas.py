@@ -30,36 +30,40 @@ class ImovelSchema(BaseModel):
     destaque: Optional[bool] = None
     valor: Optional[float] = None
     visualizacoes: Optional[int] = 0
-    finalidade: Optional[int] = None
-    tipo_imovel: Optional[int] = None
-    pretensao: Optional[int] = None
-    estado: Optional[int] = None 
+    finalidade: Optional[int] = 0
+    tipo_imovel: Optional[int] = 0
+    pretensao: Optional[int] = 0
+    estado: Optional[int] = 18 
     cidade: Optional[str] = None
     endereco: Optional[str] = None
     complemento: Optional[str] = None
     sobre_imovel: Optional[str] = None
-    area_total: Optional[float] = None
-    area_construida: Optional[float] = None 
-    dormitorios: Optional[int] = None
-    banheiros: Optional[int] = None
-    suites: Optional[int] = None
-    vagas_garagem: Optional[int] = None
-    vagas_garagem_cobertas: Optional[int] = None
-    vagas_garagem_descobertas: Optional[int] = None
+    area_total: Optional[float] = 0
+    area_construida: Optional[float] = 0 
+    dormitorios: Optional[int] = 0
+    banheiros: Optional[int] = 0
+    suites: Optional[int] = 0
+    vagas_garagem: Optional[int] = 0
+    vagas_garagem_cobertas: Optional[int] = 0
+    vagas_garagem_descobertas: Optional[int] = 0
 
     class Config:
         from_attributes = True
 
 
-class BuscaImovelSchema(BaseModel):
+class ListarImovelSchema(BaseModel):
     ativo: Optional[bool] = True
-    pretensao: int
-    finalidade: int
-    tipo_imovel: int    
+    pretensao: Optional[int] = None
+    finalidade: Optional[int] = None
+    tipo_imovel: Optional[int] = None    
     lancamento: Optional[bool] = False
     destaque: Optional[bool] = False
-    valor_inicial: float
-    valor_final: float
+    valor_inicial: Optional[float] = 0
+    valor_final: Optional[float] = 0
+    dormitorios: Optional[int] = 0
+    banheiros: Optional[int] = 0    
+    suites: Optional[int] = 0
+    vagas_garagem: Optional[int] = 0
 
     class Config:
         from_attributes = True

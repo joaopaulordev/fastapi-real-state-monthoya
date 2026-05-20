@@ -14,7 +14,7 @@ class ImovelRepositoryInterface(ABC):
     async def atualizar_caracteristicas_imovel(self, imovel_info: dict) -> Imovel: pass
 
     @abstractmethod
-    async def listar_imoveis(self, valor_inicial: float, valor_final: float, pretensao: int, finalidade: int, tipo_imovel: int, lancamento: bool, destaque: bool, ativo: bool) -> List[Imovel]: pass
+    async def listar_imoveis(self, imovel_info: dict) -> List[Imovel]: pass
 
     @abstractmethod
     async def inserir_imovel(self, imovel_info: dict) -> Imovel: pass

@@ -35,6 +35,7 @@ git add .
 git commit -m "Created full CRUD with basic fields"
 git branch -M main
 git remote add origin https://github.com/joaopaulordev/fastapi-real-state-monthoya.git
+git remote set-url origin https://github.com/joaopaulordev/fastapi-real-estate-monthoya.git
 git push -u origin main
 git push -f origin main
 git pull origin main

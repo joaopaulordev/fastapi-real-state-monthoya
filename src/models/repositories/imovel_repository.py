@@ -86,14 +86,18 @@ class ImovelRepository(ImovelRepositoryInterface):
         if imovel_info.get("finalidade"):
             imoveis = [imovel for imovel in imoveis if imovel.finalidade == imovel_info.get("finalidade")]
 
-        if imovel_info.get("tipo_imovel"):
-            imoveis = [imovel for imovel in imoveis if imovel.tipo_imovel == imovel_info.get("tipo_imovel")]
+        print(f"Tipo de imóveis: {imovel_info.get('tipo_imoveis')}")
+        if imovel_info.get("tipo_imoveis"):
+            imoveis = [imovel for imovel in imoveis if imovel.tipo_imovel in imovel_info.get("tipo_imoveis")]
         
-        imoveis = [imovel for imovel in imoveis if imovel.lancamento == imovel_info.get("lancamento")]
+        if imovel_info.get("lancamento"):
+            imoveis = [imovel for imovel in imoveis if imovel.lancamento == imovel_info.get("lancamento")]
 
-        imoveis = [imovel for imovel in imoveis if imovel.destaque == imovel_info.get("destaque")]
+        if imovel_info.get("destaque"):
+            imoveis = [imovel for imovel in imoveis if imovel.destaque == imovel_info.get("destaque")]
 
-        imoveis = [imovel for imovel in imoveis if imovel.ativo == imovel_info.get("ativo")]
+        if imovel_info.get("ativo"):
+            imoveis = [imovel for imovel in imoveis if imovel.ativo == imovel_info.get("ativo")]
 
         if imovel_info.get("dormitorios") and imovel_info.get("dormitorios") >= 5:
             imoveis = [imovel for imovel in imoveis if imovel.dormitorios >= imovel_info.get("dormitorios")]

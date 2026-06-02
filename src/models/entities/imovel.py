@@ -144,6 +144,7 @@ class Foto(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     caminho = Column("caminho", String, nullable=False)    
+    capa = Column("capa", Boolean, nullable=True, default=False)
     imovel_id: Mapped[int] = mapped_column(ForeignKey("imoveis.id"))
     imovel: Mapped["Imovel"] = relationship(back_populates="fotos")
     

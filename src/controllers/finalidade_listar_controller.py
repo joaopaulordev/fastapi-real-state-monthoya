@@ -19,9 +19,7 @@ class FinalidadeListarController(FinalidadeListarControllerInterface):
     def __format_response(self, finalidades: List[Finalidade]) -> dict:
         formatted_finalidades = [{ "id": finalidade.id, "descricao": finalidade.descricao} for finalidade in finalidades]
         return {
-            "data": {
-                "type": "Finalidades",
-                "count": len(formatted_finalidades),
-                "attributes": formatted_finalidades
-            }
+            "type": "Finalidades",
+            "count": len(formatted_finalidades),
+            "finalidades": formatted_finalidades            
         }

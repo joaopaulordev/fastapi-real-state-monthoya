@@ -8,7 +8,17 @@ from src.main.routes.finalidades_routes import finalidade_routes
 from src.main.routes.tipo_imoveis_routes import tipo_imovel_routes
 from src.main.routes.pretensoes_routes import pretensao_routes
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Mount the 'uploads' folder to the '/uploads' URL path
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")

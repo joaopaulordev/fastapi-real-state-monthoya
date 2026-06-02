@@ -17,11 +17,9 @@ class PretensaoListarController(PretensaoListarControllerInterface):
         return pretensaos
 
     def __format_response(self, pretensaos: List[Pretensao]) -> dict:
-        formatted_pretensaos = [{ "id": pretensao.id, "descricao": pretensao.descricao} for pretensao in pretensaos]
+        formatted_pretensoes = [{ "id": pretensao.id, "descricao": pretensao.descricao} for pretensao in pretensaos]
         return {
-            "data": {
-                "type": "Pretensao",
-                "count": len(formatted_pretensaos),
-                "attributes": formatted_pretensaos
-            }
+            "type": "Pretensao",
+            "count": len(formatted_pretensoes),
+            "pretensoes": formatted_pretensoes          
         }

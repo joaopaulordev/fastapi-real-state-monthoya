@@ -18,10 +18,8 @@ class TipoImovelListarController(TipoImovelListarControllerInterface):
 
     def __format_response(self, tipo_imovels: List[TipoImovel]) -> dict:
         formatted_tipo_imovels = [{ "id": tipo_imovel.id, "descricao": tipo_imovel.descricao} for tipo_imovel in tipo_imovels]
-        return {
-            "data": {
-                "type": "TipoImovels",
-                "count": len(formatted_tipo_imovels),
-                "attributes": formatted_tipo_imovels
-            }
+        return {            
+            "type": "TipoImoveis",
+            "count": len(formatted_tipo_imovels),
+            "tipoImoveis": formatted_tipo_imovels        
         }

@@ -17,10 +17,8 @@ class FinalidadeVisualizarController(FinalidadeVisualizarControllerInterface):
 
     def __format_response(self, finalidade: Finalidade) -> dict:
         formatted_finalidade = { "id": finalidade.id, "descricao": finalidade.descricao }
-        return {
-            "data": {
-                "type": "Finalidade",
-                "count": 1,
-                "attributes": formatted_finalidade
-            }
+        return {            
+            "type": "Finalidade",
+            "count": 1,
+            "finalidade": formatted_finalidade        
         }

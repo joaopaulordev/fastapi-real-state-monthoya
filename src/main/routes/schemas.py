@@ -55,7 +55,7 @@ class ListarImovelSchema(BaseModel):
     ativo: Optional[bool] = True
     pretensao: Optional[int] = None
     finalidade: Optional[int] = None
-    tipo_imovel: Optional[int] = None    
+    tipo_imoveis: Optional[List[int]] = None    
     lancamento: Optional[bool] = False
     destaque: Optional[bool] = False
     valor_inicial: Optional[float] = 0

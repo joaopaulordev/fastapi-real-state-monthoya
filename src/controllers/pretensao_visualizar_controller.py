@@ -18,9 +18,7 @@ class PretensaoVisualizarController(PretensaoVisualizarControllerInterface):
     def __format_response(self, pretensao: Pretensao) -> dict:
         formatted_pretensao = { "id": pretensao.id, "descricao": pretensao.descricao }
         return {
-            "data": {
-                "type": "Pretensao",
-                "count": 1,
-                "attributes": formatted_pretensao
-            }
+            "type": "Pretensao",
+            "count": 1,
+            "pretensao": formatted_pretensao            
         }
